@@ -1,7 +1,5 @@
 const NUMBER_LIKES_MIN = 15;
 const NUMBER_LIKES_MAX = 200;
-const MIN_NUMBER_MESSAGE = 1;
-const MAX_NUMBER_MESSAGE = 2;
 const RANDOM_NAMES = ["Аарон", "Абрам", "Аваз", "Августин", "Авраам", "Агап"];
 const AVATAR_IDS = [3, 5, 1, 6, 4, 2];
 const MESSAGE_TEXTS = [
@@ -41,15 +39,13 @@ const getAvatarUrl = (i) => {
   return `img/avatar-${AVATAR_IDS[i]}.svg`;
 };
 
-const cb = (a, b) => {
-  getRandomElements(MIN_NUMBER_MESSAGE, MAX_NUMBER_MESSAGE);
+const cb = (a, b) => Math.floor(Math.random() * 3) - 1;
 
   const getRandomMessages = (a) => {
     const a1 = a.slice();
 
-    return a1.sort(cb).slice();
+    return a1.sort(cb).slice(0, Math.floor(Math.random() * 2) + 1);
   };
-};
 
 let lastPhotoId = 1;
 const getPhotoId = () => {
