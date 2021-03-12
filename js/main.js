@@ -18,10 +18,14 @@ const DESCRIPTION_TEXTS = [
 ];
 const DEFAULT_COMMENTS_COUNT = 3;
 
-const getRandomElements = (min, max) => {
-  if (min === max) {
-    return min;
+const getRandomNumber = (min, max) => {
+  if (isNaN(min) || isNaN(max)) {
+    throw new Error("Некорректный тип аргументов.");
   }
+  if (min < 0 || max < 0) {
+    throw new Error("Передано отрицательное значение.");
+  }
+  if (min === max) return min;
 
   const coef = Math.random();
   const x = min < max ? 1 : 0;
@@ -39,13 +43,13 @@ const getAvatarUrl = (i) => {
   return `img/avatar-${AVATAR_IDS[i]}.svg`;
 };
 
-const cb = (a, b) => Math.floor(Math.random() * 3) - 1;
+const randomize = (a, b) => Math.floor(Math.random() * 3) - 1;
 
-  const getRandomMessages = (a) => {
-    const a1 = a.slice();
+const getRandomMessages = (a, n) => {
+  const a1 = a.slice();
 
-    return a1.sort(cb).slice(0, Math.floor(Math.random() * 2) + 1);
-  };
+  return a1.sort(randomize).slice(1, Math.floor(Math.random() * n) + 1);
+};
 
 let lastPhotoId = 1;
 const getPhotoId = () => {
@@ -58,7 +62,7 @@ const getCommentId = () => {
 };
 
 const getComment = () => {
-  const idx = getRandomElements(1, RANDOM_NAMES.length - 1);
+  const idx = getRandomNumber(1, RANDOM_NAMES.length - 1);
 
   return {
     id: getCommentId(),
@@ -85,7 +89,7 @@ const getPhotos = (count) => {
         id: getPhotoId(),
         url: getPhotoUrl(i),
         description: getRandomMessages(DESCRIPTION_TEXTS).join(),
-        likes: getRandomElements(NUMBER_LIKES_MIN, NUMBER_LIKES_MAX),
+        likes: getRandomNumber(NUMBER_LIKES_MIN, NUMBER_LIKES_MAX),
         comments: getComments(DEFAULT_COMMENTS_COUNT),
       }
      );
@@ -95,5 +99,9 @@ const getPhotos = (count) => {
   return photos;
 };
 
+const checkStringLength = (str, maxlength) =>
+  typeof str === "string" && str.length <= maxlength;
+
 const photos = getPhotos(25);
+
 console.log(photos);
