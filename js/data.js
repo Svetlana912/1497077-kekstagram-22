@@ -1,3 +1,5 @@
+import {getRandomElement} from '.util.js';
+
 const NUMBER_LIKES_MIN = 15;
 const NUMBER_LIKES_MAX = 200;
 const RANDOM_NAMES = ["Аарон", "Абрам", "Аваз", "Августин", "Авраам", "Агап"];
@@ -17,23 +19,6 @@ const DESCRIPTION_TEXTS = [
   "Лучшее фото часа",
 ];
 const DEFAULT_COMMENTS_COUNT = 3;
-
-const getRandomNumber = (min, max) => {
-  if (isNaN(min) || isNaN(max)) {
-    throw new Error("Некорректный тип аргументов.");
-  }
-  if (min < 0 || max < 0) {
-    throw new Error("Передано отрицательное значение.");
-  }
-  if (min === max) return min;
-
-  const coef = Math.random();
-  const x = min < max ? 1 : 0;
-
-  return Math.floor(
-    coef * (Math.floor(max) - Math.floor(min) + x) + Math.floor(min)
-  );
-};
 
 const getPhotoUrl = (i) => {
   return `photos/${i}.jpg`;
@@ -105,3 +90,5 @@ const checkStringLength = (str, maxlength) =>
 const photos = getPhotos(25);
 
 console.log(photos);
+
+export {getPhotos};
