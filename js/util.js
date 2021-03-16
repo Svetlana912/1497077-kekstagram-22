@@ -1,9 +1,9 @@
 const getRandomBetween = (min, max) => {
   if (isNaN(min) || isNaN(max)) {
-    throw new Error(`Некорректный тип аргументов.`);
+    throw new Error('Некорректный тип аргументов.');
   }
   if (min < 0 || max < 0) {
-    throw new Error(`Передано отрицательное значение.`);
+    throw new Error('Передано отрицательное значение.');
   }
   if (min === max) return min;
 
@@ -16,6 +16,6 @@ const getRandomBetween = (min, max) => {
 };
 
 const checkStringLength = (str, maxlength) =>
-  typeof str === `string` && str.length <= maxlength;
+  typeof str === 'string' && str.length <= maxlength;
 
-export {getRandomBetween, checkStringLength};
+export { getRandomBetween, checkStringLength };
