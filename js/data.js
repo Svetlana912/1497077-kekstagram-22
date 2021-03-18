@@ -28,7 +28,7 @@ const getAvatarUrl = (i) => {
   return `img/avatar-${AVATAR_IDS[i]}.svg`;
 };
 
-const randomize = (a, b) => Math.floor(Math.random() * 3) - 1;
+const randomize = () => Math.floor(Math.random() * 3) - 1;
 
 const getRandomMessages = (a, n) => {
   const a1 = a.slice();
@@ -71,11 +71,11 @@ const getPhotos = (count) => {
     const getPhotosArray = () => {
       photos.push(
         {
-        id: getPhotoId(),
-        url: getPhotoUrl(i),
-        description: getRandomMessages(DESCRIPTION_TEXTS).join(),
-        likes: getRandomBetween(NUMBER_LIKES_MIN, NUMBER_LIKES_MAX),
-        comments: getComments(DEFAULT_COMMENTS_COUNT),
+          id: getPhotoId(),
+          url: getPhotoUrl(i),
+          description: getRandomMessages(DESCRIPTION_TEXTS).join(),
+          likes: getRandomBetween(NUMBER_LIKES_MIN, NUMBER_LIKES_MAX),
+          comments: getComments(DEFAULT_COMMENTS_COUNT),
       }
      );
     };
