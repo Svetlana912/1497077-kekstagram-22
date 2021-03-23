@@ -1,7 +1,8 @@
-import { getPhotos } from '.data.js';
-import { placePictures, PICTURES } from '.get-pictures.js';
+import { getPhotos, PICTURES_COUNT } from './data.js';
+import { placePictures } from './create-pictures.js';
 
-const photos = getPhotos(25);
-placePictures(PICTURES);
+
+const photos = getPhotos(PICTURES_COUNT);
+placePictures(photos);
 
 console.log(photos);

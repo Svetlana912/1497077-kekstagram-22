@@ -18,4 +18,6 @@ const getRandomBetween = (min, max) => {
 const checkStringLength = (str, maxlength) =>
   typeof str === 'string' && str.length <= maxlength;
 
-export { getRandomBetween, checkStringLength };
+const randomize = () => Math.floor(Math.random() * 3) - 1;
+
+export { getRandomBetween, checkStringLength, randomize };

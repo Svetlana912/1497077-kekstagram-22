@@ -1,5 +1,6 @@
-import { getRandomBetween } from '.util.js';
+import { getRandomBetween, randomize } from './util.js';
 
+const PICTURES_COUNT = 25;
 const NUMBER_LIKES_MIN = 15;
 const NUMBER_LIKES_MAX = 200;
 const RANDOM_NAMES = ['Аарон', 'Абрам', 'Аваз', 'Августин', 'Авраам', 'Агап'];
@@ -20,6 +21,19 @@ const DESCRIPTION_TEXTS = [
 ];
 const DEFAULT_COMMENTS_COUNT = 3;
 
+const getPicture = (count) => {
+  const pictures = [];
+  for (let i = 1; i <= count; i++) {
+   
+      pictures.push({
+        url: `photos/${i}.jpg`,
+        comments: `Комментарий № ${i}`,
+        likes: i,
+      });
+  }
+  return pictures;
+};
+
 const getPhotoUrl = (i) => {
   return `photos/${i}.jpg`;
 };
@@ -28,9 +42,7 @@ const getAvatarUrl = (i) => {
   return `img/avatar-${AVATAR_IDS[i]}.svg`;
 };
 
-const randomize = () => Math.floor(Math.random() * 3) - 1;
-
-const getRandomMessages = (a, n) => {
+const getRandomElements = (a, n) => {
   const a1 = a.slice();
 
   return a1.sort(randomize).slice(1, Math.floor(Math.random() * n) + 1);
@@ -52,7 +64,7 @@ const getComment = () => {
   return {
     id: getCommentId(),
     avatar: getAvatarUrl(idx),
-    message: getRandomMessages(MESSAGE_TEXTS).join(),
+    message: getRandomElements(MESSAGE_TEXTS).join(),
     name: RANDOM_NAMES[idx],
   };
 };
@@ -68,20 +80,17 @@ const getComments = (n) => {
 const getPhotos = (count) => {
   const photos = [];
   for (let i = 1; i <= count; i++) {
-    const getPhotosArray = () => {
       photos.push(
         {
           id: getPhotoId(),
           url: getPhotoUrl(i),
-          description: getRandomMessages(DESCRIPTION_TEXTS).join(),
+          description: getRandomElements(DESCRIPTION_TEXTS).join(),
           likes: getRandomBetween(NUMBER_LIKES_MIN, NUMBER_LIKES_MAX),
           comments: getComments(DEFAULT_COMMENTS_COUNT),
       }
      );
-    };
-    getPhotosArray();
   }
   return photos;
 };
 
-export { getPhotos };
+export { getPhotos, getPicture, PICTURES_COUNT };

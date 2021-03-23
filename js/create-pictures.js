@@ -1,20 +1,3 @@
-const getPicture = (count) => {
-  const pictures = [];
-  for (let i = 1; i <= count; i++) {
-    const getPictures = (i) => {
-      pictures.push({
-        url: `photos/${i}.jpg`,
-        comments: `Комментарий № ${i}`,
-        likes: i,
-      });
-    };
-    getPictures(i);
-  }
-  return pictures;
-};
-
-const PICTURES_COUNT = 25;
-const PICTURES = getPicture(PICTURES_COUNT);
 const PICTURE_TEMPLATE = document.querySelector('#picture');
 const PICTURES_NODE = document.querySelector('.pictures');
 
@@ -57,4 +40,4 @@ const placePictures = (pictures) => {
   PICTURES_NODE.appendChild(renderPictures(pictures));
 };
 
-export { placePictures, PICTURES };
+export { placePictures };
