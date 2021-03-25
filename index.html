@@ -131,12 +131,12 @@
 
     </section>
 
-    <!-- Полноэкранный показ изображения -->
+    <!-- Полноэкранный показ изображения  const BIG_PICTURE = document.querySelector('.big-picture')-->
     <section class="big-picture  overlay  hidden">
       <h2 class="big-picture__title  visually-hidden">Просмотр фотографии</h2>
       <div class="big-picture__preview">
 
-        <!-- Просмотр изображения -->
+        <!-- Просмотр изображения const BIG_PICTURE_IMG = BIG_PICTURE.querySelector('.big-picture__img img')-->
         <div class="big-picture__img">
           <img src="img/logo-background-3.jpg" alt="Девушка в купальнике" width="600" height="600">
         </div>
@@ -229,6 +229,15 @@
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
+
+  <!-- элемент комментария -->
+  <template id="comment">
+    <li class="social__comment">
+      <img class="social__picture" src="img/avatar-4.svg" alt="Аватар комментатора фотографии" width="35" height="35">
+      <p class="social__text">Мега фото! Просто обалдеть. Как вам так удалось?</p>
+    </li>
+  </template>
+
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
